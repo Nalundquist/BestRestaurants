@@ -36,7 +36,7 @@ namespace BestRestaurants.Controllers
     {
       List<Restaurant> model = _db.Restaurants.Where(restaurant => restaurant.CuisineId == id).Include(restaurant => restaurant.Cuisine).ToList();
       ViewBag.CuisineName = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id).Name;
-      ViewBag.CuisineId = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId = id).CuisineId;
+      ViewBag.CuisineId = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id).CuisineId;
       // if(model.Count == 0)
       // {
       //   Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id);

@@ -7,7 +7,7 @@
 
 @if (Model.Count == 0)
 {
-	<p>No @ViewBag.CuisineId.Name restaurants of this kind in your area :(</p>
+	<p>No @ViewBag.CuisineName restaurants of this kind in your area :(</p>
 }
 else
 {
@@ -26,8 +26,8 @@ else
 </ul>
 }
 
-<p>@Html.ActionLink("Edit this Cuisine", "Edit", new {id = Model[0].Cuisine.CuisineId })</p>
-<p>@Html.ActionLink("Delete this Cuisine", "Delete", new {id = Model[0].Cuisine.CuisineId })</p>
+<p>@Html.ActionLink("Edit this Cuisine", "Edit", new {id = ViewBag.CuisineId })</p>
+<p>@Html.ActionLink("Delete this Cuisine", "Delete", new {id = ViewBag.CuisineId })</p>
 <p>@Html.ActionLink("Add new Cuisine", "Create")</p>
 <p>@Html.ActionLink("See All Cuisines", "Index")</p>
 <p>@Html.ActionLink("See All Restaurants", "Index", "Restaurants")</p>
