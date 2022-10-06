@@ -1,0 +1,31 @@
+@{
+	Layout = "_Layout";
+}
+
+@using BestRestaurants.Models;
+@model List<BestRestaurants.Models.Restaurant>
+
+
+@if (typeof Model == Cuisine)
+{
+	<p>no restaurants of this kind in your area :(</p>
+}
+<h3>Details on @Model[0].Cuisine.Name :</h3>
+
+<p>@Model[0].Cuisine.Description</p>
+
+<h3>Restaurants serving @Model[0].Cuisine.Name</h3>
+
+<ul>
+@foreach (Restaurant restaurant in Model)
+{
+	<li>@Html.ActionLink($"{restaurant.Name}", "Details", new { id = restaurant.RestaurantId}) | @restaurant.PriceRange</li>
+}
+</ul>
+
+<p>@Html.ActionLink("Edit this Cuisine", "Edit", new {id = Model[0].Cuisine.CuisineId })</p>
+<p>@Html.ActionLink("Delete this Cuisine", "Delete", new {id = Model[0].Cuisine.CuisineId })</p>
+<p>@Html.ActionLink("Add new Cuisine", "Create")</p>
+<p>@Html.ActionLink("See All Cuisines", "Index")</p>
+<p>@Html.ActionLink("See All Restaurants", "Index", "Restaurants")</p>
+<p>@Html.ActionLink("Return Home", "Index", "Home")</p>

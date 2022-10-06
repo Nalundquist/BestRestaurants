@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using BestRestaurants.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BestRestaurants.Controllers
 {
@@ -16,7 +17,8 @@ namespace BestRestaurants.Controllers
     }
     public ActionResult Index()
     {
-      List<Restaurant> model = _db.Restaurants.Include( restaurant => restaurant.Cuisine).ToList();
+      List<Restaurant> model = _db.Restaurants.Include(restaurant => restaurant.Cuisine).ToList();
+      ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "Name");
       return View(model);
     }
     public ActionResult Create()
@@ -39,7 +41,7 @@ namespace BestRestaurants.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			Restaurant thisRestaurant = _db.Restaurant.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+			Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
       ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "Name");
 			return View(thisRestaurant);
 		}
@@ -54,15 +56,15 @@ namespace BestRestaurants.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			Restaurant thisRestaurant = _db.Restaurant.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+			Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
 			return View(thisRestaurant);
 		}
 
-		[HttpPost]
+		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Restaurant thisRestaurant = _db.Restaurant.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-			_db.Restaurant.Remove(thisRestaurant);
+			Restaurant thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+			_db.Restaurants.Remove(thisRestaurant);
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}

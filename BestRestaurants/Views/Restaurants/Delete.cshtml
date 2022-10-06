@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BestRestaurants.Models.Restaurant
+<h2>BY CONFIRMING YOUR CHOICE YOU WILL BE PUTTING ALL THESE PEOPLE OUT OF JOBS</h2>
+
+@Html.DisplayNameFor(model => model.Name) : @Html.DisplayFor(model => model.Name)
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+
+@Html.ActionLink("Back to Restaurants", "Index")
+@Html.ActionLink("See all Cuisines", "Index", "Cuisines")
+@Html.ActionLink("Return Home", "Index", "Home")

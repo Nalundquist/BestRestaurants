@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BestRestaurants.Models.Restaurant
+
+<h2>Restaurant Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)<h3>
+<p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
+<p>Price Range: @Html.DisplayFor(model => model.PriceRange)</p>
+<p>@Html.DisplayNameFor(model => model.Location): @Html.DisplayFor(model => model.Location)</p>
+<p>Vegan Options? : @Html.DisplayFor(model => model.VeganFriendly)</p>
+<p>Gluten-Free Options? : @Html.DisplayFor(model => model.GlutenFree)</p>
+<p>Cuisine: @Html.DisplayFor(model => model.Cuisine.Name)</p>
+
+<p>@Html.ActionLink("Edit Restaurant", "Edit", new { id = Model.RestaurantId})</p>
+<p>@Html.ActionLink("Delete Restaurant", "Delete", new { id = Model.RestaurantId})</p>
+<p>@Html.ActionLink("Back to Restaurants", "Index")</p>

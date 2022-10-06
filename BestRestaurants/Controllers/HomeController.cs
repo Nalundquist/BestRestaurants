@@ -1,4 +1,4 @@
-using Miscrosoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BestRestaurants.Controllers
 {
