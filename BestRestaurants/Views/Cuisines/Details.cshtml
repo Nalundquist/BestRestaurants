@@ -3,13 +3,15 @@
 }
 
 @using BestRestaurants.Models;
-@model List<BestRestaurants.Models.Restaurant>
 
 
-@if (typeof Model == Cuisine)
+@if (Model.Count == 0)
 {
-	<p>no restaurants of this kind in your area :(</p>
+	<p>No @ViewBag.CuisineId.Name restaurants of this kind in your area :(</p>
 }
+else
+{
+	
 <h3>Details on @Model[0].Cuisine.Name :</h3>
 
 <p>@Model[0].Cuisine.Description</p>
@@ -22,6 +24,7 @@
 	<li>@Html.ActionLink($"{restaurant.Name}", "Details", new { id = restaurant.RestaurantId}) | @restaurant.PriceRange</li>
 }
 </ul>
+}
 
 <p>@Html.ActionLink("Edit this Cuisine", "Edit", new {id = Model[0].Cuisine.CuisineId })</p>
 <p>@Html.ActionLink("Delete this Cuisine", "Delete", new {id = Model[0].Cuisine.CuisineId })</p>

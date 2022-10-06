@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using BestRestaurants.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BestRestaurants.Controllers
 {
@@ -34,11 +35,13 @@ namespace BestRestaurants.Controllers
     public ActionResult Details(int id)
     {
       List<Restaurant> model = _db.Restaurants.Where(restaurant => restaurant.CuisineId == id).Include(restaurant => restaurant.Cuisine).ToList();
-      if(model.Count == 0)
-      {
-        Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id);
-        return View(thisCuisine);
-      }
+      ViewBag.CuisineName = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id).Name;
+      ViewBag.CuisineId = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId = id).CuisineId;
+      // if(model.Count == 0)
+      // {
+      //   Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id);
+      //   return View(thisCuisine);
+      // }
       return View(model);
     }
 

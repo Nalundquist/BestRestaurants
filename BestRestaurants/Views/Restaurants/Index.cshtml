@@ -17,3 +17,9 @@
   <li>@Html.ActionLink($"{restaurant.Name}", "Details", new { id = restaurant.RestaurantId})  |  @restaurant.Cuisine.Name</li>
 }
 
+<h3>Search by Cuisine type: </h3>
+@using (Html.BeginForm("Search", "Restaurants", FormMethod.Get))
+{
+  @Html.DropDownList("CuisineId")
+  <input type="submit" value="search"/>
+}
